@@ -25,8 +25,7 @@ let yearSpan = document.querySelector("#year");
 let countries;
 let key = d => d.properties.name;
 let currentYear = 1990;
-let currentEmissionType =
-  "carbon_dioxide_co2_emissions_without_land_use_land_use_change_and_forestry_lulucf_in_kilotonne_co2_equivalent";
+let currentEmissionType = "co2";
 let emissions = {};
 let minEmission, maxEmission;
 
@@ -50,7 +49,7 @@ function initGraph() {
   let path = d3.geoPath().projection(projection);
 
   // Import and parse emmissions csv
-  d3.csv("greenhouse-edited.csv", data => {
+  d3.csv("greenhouse-edited2.csv", data => {
     dataset = data;
 
     // Iterate through emissions data items
@@ -58,7 +57,7 @@ function initGraph() {
       let country = dataset[i]["country_or_area"];
       let year = dataset[i].year;
       let emissionValue = parseFloat(dataset[i].value);
-      let category = dataset[i]["category"];
+      let category = dataset[i].category;
 
       emissions[category] = emissions[category] || {};
       emissions[category][country] = emissions[category][country] || {};
@@ -175,8 +174,7 @@ function updateYear() {
 function updateEmissionType(num) {
   switch (num) {
     case 1:
-      currentEmissionType =
-        "carbon_dioxide_co2_emissions_without_land_use_land_use_change_and_forestry_lulucf_in_kilotonne_co2_equivalent";
+      currentEmissionType = "co2";
 
       // Update min and max emission values for current emission type
 
@@ -208,10 +206,10 @@ function updateEmissionType(num) {
       updateGraph();
       break;
     case 2:
-      currentEmissionType =
-        "greenhouse_gas_ghgs_emissions_without_land_use_land_use_change_and_forestry_lulucf_in_kilotonne_co2_equivalent";
+      currentEmissionType = "ghg";
 
       // Update min and max emission values for current emission type
+      console.dir(emissions);
 
       maxEmission =
         Math.round(
@@ -241,8 +239,7 @@ function updateEmissionType(num) {
       updateGraph();
       break;
     case 3:
-      currentEmissionType =
-        "hydrofluorocarbons_hfcs_emissions_in_kilotonne_co2_equivalent";
+      currentEmissionType = "hfcs";
 
       // Update min and max emission values for current emission type
 
@@ -274,8 +271,7 @@ function updateEmissionType(num) {
       updateGraph();
       break;
     case 4:
-      currentEmissionType =
-        "methane_ch4_emissions_without_land_use_land_use_change_and_forestry_lulucf_in_kilotonne_co2_equivalent";
+      currentEmissionType = "ch4";
 
       // Update min and max emission values for current emission type
 
@@ -307,8 +303,7 @@ function updateEmissionType(num) {
       updateGraph();
       break;
     case 5:
-      currentEmissionType =
-        "nitrous_oxide_n2o_emissions_without_land_use_land_use_change_and_forestry_lulucf_in_kilotonne_co2_equivalent";
+      currentEmissionType = "n2o";
 
       // Update min and max emission values for current emission type
 
@@ -340,8 +335,7 @@ function updateEmissionType(num) {
       updateGraph();
       break;
     case 6:
-      currentEmissionType =
-        "sulphur_hexafluoride_sf6_emissions_in_kilotonne_co2_equivalent";
+      currentEmissionType = "sf6";
 
       // Update min and max emission values for current emission type
       maxEmission =
