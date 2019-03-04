@@ -9,7 +9,7 @@ let lWidth = 400;
 let lHeight = 30;
 let legendLowText, legendHighText;
 let legend, legendRect;
-let colorStart, colorEnd;
+let cStop1, cStop2, cStop3, cStop4, cStop5, cStop6;
 
 let co2Button = document.querySelector("#co2");
 let ghgsButton = document.querySelector("#ghgs");
@@ -77,8 +77,22 @@ function initGraph() {
 
     cScale = d3
       .scaleLinear()
-      .domain([minEmission, maxEmission])
-      .range(["white", "red"]);
+      .domain([
+        minEmission,
+        maxEmission * 0.2,
+        maxEmission * 0.4,
+        maxEmission * 0.6,
+        maxEmission * 0.8,
+        maxEmission
+      ])
+      .range([
+        "#4d9221",
+        "#a1d76a",
+        "#e6f5d0",
+        "#fde0ef",
+        "#e9a3c9",
+        "#c51b7d"
+      ]);
 
     legend = svg
       .append("defs")
@@ -90,16 +104,43 @@ function initGraph() {
       .attr("y2", "100%")
       .attr("spreadMethod", "pad");
 
-    colorStart = legend
+    // ['##8c510a','#d8b365','#f6e8c3','#c7eae5','#5ab4ac','#01665e']
+    // ['#4d9221', '#a1d76a', '#e6f5d0', '#fde0ef', '#e9a3c9', '#c51b7d']
+
+    cStop1 = legend
       .append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "white")
+      .attr("stop-color", "#4d9221")
       .attr("stop-opacity", 1);
 
-    colorEnd = legend
+    cStop2 = legend
+      .append("stop")
+      .attr("offset", "20%")
+      .attr("stop-color", "#a1d76a")
+      .attr("stop-opacity", 1);
+
+    cStop3 = legend
+      .append("stop")
+      .attr("offset", "40%")
+      .attr("stop-color", "#e6f5d0")
+      .attr("stop-opacity", 1);
+
+    cStop4 = legend
+      .append("stop")
+      .attr("offset", "60%")
+      .attr("stop-color", "#fde0ef")
+      .attr("stop-opacity", 1);
+
+    cStop5 = legend
+      .append("stop")
+      .attr("offset", "80%")
+      .attr("stop-color", "#e9a3c9")
+      .attr("stop-opacity", 1);
+
+    cStop6 = legend
       .append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "red")
+      .attr("stop-color", "#c51b7d")
       .attr("stop-opacity", 1);
 
     legendRect = svg
@@ -188,14 +229,58 @@ function updateEmissionType(num) {
       // Update color scale
       cScale = d3
         .scaleLinear()
-        .domain([minEmission, maxEmission])
-        .range(["white", "red"]);
+        .domain([
+          minEmission,
+          maxEmission * 0.2,
+          maxEmission * 0.4,
+          maxEmission * 0.6,
+          maxEmission * 0.8,
+          maxEmission
+        ])
+        .range([
+          "#4d9221",
+          "#a1d76a",
+          "#e6f5d0",
+          "#fde0ef",
+          "#e9a3c9",
+          "#c51b7d"
+        ]);
 
-      colorEnd
-        .transition()
-        .duration(1500)
-        .attr("stop-color", "red")
-        .attr("offset", "100%");
+      cStop1 = legend
+        .append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "#4d9221")
+        .attr("stop-opacity", 1);
+
+      cStop2 = legend
+        .append("stop")
+        .attr("offset", "20%")
+        .attr("stop-color", "#a1d76a")
+        .attr("stop-opacity", 1);
+
+      cStop3 = legend
+        .append("stop")
+        .attr("offset", "40%")
+        .attr("stop-color", "#e6f5d0")
+        .attr("stop-opacity", 1);
+
+      cStop4 = legend
+        .append("stop")
+        .attr("offset", "60%")
+        .attr("stop-color", "#fde0ef")
+        .attr("stop-opacity", 1);
+
+      cStop5 = legend
+        .append("stop")
+        .attr("offset", "80%")
+        .attr("stop-color", "#e9a3c9")
+        .attr("stop-opacity", 1);
+
+      cStop6 = legend
+        .append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "#c51b7d")
+        .attr("stop-opacity", 1);
 
       legendHighText
         .transition()
@@ -209,7 +294,7 @@ function updateEmissionType(num) {
       currentEmissionType = "ghg";
 
       // Update min and max emission values for current emission type
-      console.dir(emissions);
+      // console.dir(emissions);
 
       maxEmission =
         Math.round(
@@ -221,14 +306,58 @@ function updateEmissionType(num) {
       // Update color scale
       cScale = d3
         .scaleLinear()
-        .domain([minEmission, maxEmission])
-        .range(["white", "blue"]);
+        .domain([
+          minEmission,
+          maxEmission * 0.2,
+          maxEmission * 0.4,
+          maxEmission * 0.6,
+          maxEmission * 0.8,
+          maxEmission
+        ])
+        .range([
+          "#4d9221",
+          "#a1d76a",
+          "#e6f5d0",
+          "#fde0ef",
+          "#e9a3c9",
+          "#c51b7d"
+        ]);
 
-      colorEnd
-        .transition()
-        .duration(1500)
-        .attr("stop-color", "blue")
-        .attr("offset", "100%");
+      cStop1 = legend
+        .append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "#4d9221")
+        .attr("stop-opacity", 1);
+
+      cStop2 = legend
+        .append("stop")
+        .attr("offset", "20%")
+        .attr("stop-color", "#a1d76a")
+        .attr("stop-opacity", 1);
+
+      cStop3 = legend
+        .append("stop")
+        .attr("offset", "40%")
+        .attr("stop-color", "#e6f5d0")
+        .attr("stop-opacity", 1);
+
+      cStop4 = legend
+        .append("stop")
+        .attr("offset", "60%")
+        .attr("stop-color", "#fde0ef")
+        .attr("stop-opacity", 1);
+
+      cStop5 = legend
+        .append("stop")
+        .attr("offset", "80%")
+        .attr("stop-color", "#e9a3c9")
+        .attr("stop-opacity", 1);
+
+      cStop6 = legend
+        .append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "#c51b7d")
+        .attr("stop-opacity", 1);
 
       legendHighText
         .transition()
@@ -253,14 +382,58 @@ function updateEmissionType(num) {
       // Update color scale
       cScale = d3
         .scaleLinear()
-        .domain([minEmission, maxEmission])
-        .range(["white", "orange"]);
+        .domain([
+          minEmission,
+          maxEmission * 0.2,
+          maxEmission * 0.4,
+          maxEmission * 0.6,
+          maxEmission * 0.8,
+          maxEmission
+        ])
+        .range([
+          "#4d9221",
+          "#a1d76a",
+          "#e6f5d0",
+          "#fde0ef",
+          "#e9a3c9",
+          "#c51b7d"
+        ]);
 
-      colorEnd
-        .transition()
-        .duration(1500)
-        .attr("stop-color", "orange")
-        .attr("offset", "100%");
+      cStop1 = legend
+        .append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "#4d9221")
+        .attr("stop-opacity", 1);
+
+      cStop2 = legend
+        .append("stop")
+        .attr("offset", "20%")
+        .attr("stop-color", "#a1d76a")
+        .attr("stop-opacity", 1);
+
+      cStop3 = legend
+        .append("stop")
+        .attr("offset", "40%")
+        .attr("stop-color", "#e6f5d0")
+        .attr("stop-opacity", 1);
+
+      cStop4 = legend
+        .append("stop")
+        .attr("offset", "60%")
+        .attr("stop-color", "#fde0ef")
+        .attr("stop-opacity", 1);
+
+      cStop5 = legend
+        .append("stop")
+        .attr("offset", "80%")
+        .attr("stop-color", "#e9a3c9")
+        .attr("stop-opacity", 1);
+
+      cStop6 = legend
+        .append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "#c51b7d")
+        .attr("stop-opacity", 1);
 
       legendHighText
         .transition()
@@ -285,14 +458,58 @@ function updateEmissionType(num) {
       // Update color scale
       cScale = d3
         .scaleLinear()
-        .domain([minEmission, maxEmission])
-        .range(["white", "green"]);
+        .domain([
+          minEmission,
+          maxEmission * 0.2,
+          maxEmission * 0.4,
+          maxEmission * 0.6,
+          maxEmission * 0.8,
+          maxEmission
+        ])
+        .range([
+          "#4d9221",
+          "#a1d76a",
+          "#e6f5d0",
+          "#fde0ef",
+          "#e9a3c9",
+          "#c51b7d"
+        ]);
 
-      colorEnd
-        .transition()
-        .duration(1500)
-        .attr("stop-color", "green")
-        .attr("offset", "100%");
+      cStop1 = legend
+        .append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "#4d9221")
+        .attr("stop-opacity", 1);
+
+      cStop2 = legend
+        .append("stop")
+        .attr("offset", "20%")
+        .attr("stop-color", "#a1d76a")
+        .attr("stop-opacity", 1);
+
+      cStop3 = legend
+        .append("stop")
+        .attr("offset", "40%")
+        .attr("stop-color", "#e6f5d0")
+        .attr("stop-opacity", 1);
+
+      cStop4 = legend
+        .append("stop")
+        .attr("offset", "60%")
+        .attr("stop-color", "#fde0ef")
+        .attr("stop-opacity", 1);
+
+      cStop5 = legend
+        .append("stop")
+        .attr("offset", "80%")
+        .attr("stop-color", "#e9a3c9")
+        .attr("stop-opacity", 1);
+
+      cStop6 = legend
+        .append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "#c51b7d")
+        .attr("stop-opacity", 1);
 
       legendHighText
         .transition()
@@ -317,14 +534,58 @@ function updateEmissionType(num) {
       // Update color scale
       cScale = d3
         .scaleLinear()
-        .domain([minEmission, maxEmission])
-        .range(["white", "teal"]);
+        .domain([
+          minEmission,
+          maxEmission * 0.2,
+          maxEmission * 0.4,
+          maxEmission * 0.6,
+          maxEmission * 0.8,
+          maxEmission
+        ])
+        .range([
+          "#4d9221",
+          "#a1d76a",
+          "#e6f5d0",
+          "#fde0ef",
+          "#e9a3c9",
+          "#c51b7d"
+        ]);
 
-      colorEnd
-        .transition()
-        .duration(1500)
-        .attr("stop-color", "teal")
-        .attr("offset", "100%");
+      cStop1 = legend
+        .append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "#4d9221")
+        .attr("stop-opacity", 1);
+
+      cStop2 = legend
+        .append("stop")
+        .attr("offset", "20%")
+        .attr("stop-color", "#a1d76a")
+        .attr("stop-opacity", 1);
+
+      cStop3 = legend
+        .append("stop")
+        .attr("offset", "40%")
+        .attr("stop-color", "#e6f5d0")
+        .attr("stop-opacity", 1);
+
+      cStop4 = legend
+        .append("stop")
+        .attr("offset", "60%")
+        .attr("stop-color", "#fde0ef")
+        .attr("stop-opacity", 1);
+
+      cStop5 = legend
+        .append("stop")
+        .attr("offset", "80%")
+        .attr("stop-color", "#e9a3c9")
+        .attr("stop-opacity", 1);
+
+      cStop6 = legend
+        .append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "#c51b7d")
+        .attr("stop-opacity", 1);
 
       legendHighText
         .transition()
@@ -348,14 +609,58 @@ function updateEmissionType(num) {
       // Update color scale
       cScale = d3
         .scaleLinear()
-        .domain([minEmission, maxEmission])
-        .range(["white", "purple"]);
+        .domain([
+          minEmission,
+          maxEmission * 0.2,
+          maxEmission * 0.4,
+          maxEmission * 0.6,
+          maxEmission * 0.8,
+          maxEmission
+        ])
+        .range([
+          "#4d9221",
+          "#a1d76a",
+          "#e6f5d0",
+          "#fde0ef",
+          "#e9a3c9",
+          "#c51b7d"
+        ]);
 
-      colorEnd
-        .transition()
-        .duration(1500)
-        .attr("stop-color", "purple")
-        .attr("offset", "100%");
+      cStop1 = legend
+        .append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "#4d9221")
+        .attr("stop-opacity", 1);
+
+      cStop2 = legend
+        .append("stop")
+        .attr("offset", "20%")
+        .attr("stop-color", "#a1d76a")
+        .attr("stop-opacity", 1);
+
+      cStop3 = legend
+        .append("stop")
+        .attr("offset", "40%")
+        .attr("stop-color", "#e6f5d0")
+        .attr("stop-opacity", 1);
+
+      cStop4 = legend
+        .append("stop")
+        .attr("offset", "60%")
+        .attr("stop-color", "#fde0ef")
+        .attr("stop-opacity", 1);
+
+      cStop5 = legend
+        .append("stop")
+        .attr("offset", "80%")
+        .attr("stop-color", "#e9a3c9")
+        .attr("stop-opacity", 1);
+
+      cStop6 = legend
+        .append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "#c51b7d")
+        .attr("stop-opacity", 1);
 
       legendHighText
         .transition()
