@@ -20,6 +20,7 @@ let sf6Button = document.querySelector("#sf6");
 
 let yearSlider = document.querySelector("#yearSlider");
 let yearSpan = document.querySelector("#year");
+let mapTitle = document.querySelector("#mapTitle");
 
 // Countries loaded in from geojson
 let countries;
@@ -217,6 +218,8 @@ function updateEmissionType(num) {
     case 1:
       currentEmissionType = "co2";
 
+      mapTitle.innerText = "Carbon Dioxide (CO2) Emissions in kilotons";
+
       // Update min and max emission values for current emission type
 
       maxEmission =
@@ -293,8 +296,7 @@ function updateEmissionType(num) {
     case 2:
       currentEmissionType = "ghg";
 
-      // Update min and max emission values for current emission type
-      // console.dir(emissions);
+      mapTitle.innerText = "Greenhouse Gas (GHGS) Emissions in kilotons";
 
       maxEmission =
         Math.round(
@@ -369,6 +371,8 @@ function updateEmissionType(num) {
       break;
     case 3:
       currentEmissionType = "hfcs";
+
+      mapTitle.innerText = "Hydrofluorocarbons (HFCS) Emissions in kilotons";
 
       // Update min and max emission values for current emission type
 
@@ -446,6 +450,8 @@ function updateEmissionType(num) {
     case 4:
       currentEmissionType = "ch4";
 
+      mapTitle.innerText = "Methane (CH4) Emissions in kilotons";
+
       // Update min and max emission values for current emission type
 
       maxEmission =
@@ -522,6 +528,8 @@ function updateEmissionType(num) {
     case 5:
       currentEmissionType = "n2o";
 
+      mapTitle.innerText = "Nitrous Oxide (N2O) Emissions in kilotons";
+
       // Update min and max emission values for current emission type
 
       maxEmission =
@@ -597,6 +605,8 @@ function updateEmissionType(num) {
       break;
     case 6:
       currentEmissionType = "sf6";
+
+      mapTitle.innerText = "Sulphur Hexaflouride (SF6) Emissions in kilotons";
 
       // Update min and max emission values for current emission type
       maxEmission =
