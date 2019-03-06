@@ -19,8 +19,13 @@ let n2oButton = document.querySelector("#n2o");
 let sf6Button = document.querySelector("#sf6");
 
 let yearSlider = document.querySelector("#yearSlider");
-let yearSpan = document.querySelector("#year");
+let currentYearSpan = document.querySelector("#year");
 let mapTitle = document.querySelector("#mapTitle");
+let tooltip = document.querySelector("#tooltip");
+let countrySpan = document.querySelector("#countrySpan");
+let yearSpan = document.querySelector("#yearSpan");
+let emissionTypeSpan = document.querySelector("#emissionTypeSpan");
+let emissionAmmountSpan = document.querySelector("#emissionAmmountSpan");
 
 // Countries loaded in from geojson
 let countries;
@@ -33,6 +38,50 @@ let minEmission, maxEmission;
 // Row conversion function
 function rowConverter(d) {
   return d;
+}
+
+function updateTooltip(
+  country,
+  year,
+  emissionType,
+  emissionAmmount,
+  coordinates
+) {
+  let mouseX =
+    document.querySelector("svg").getBoundingClientRect().x +
+    coordinates[0] +
+    10;
+  let mouseY =
+    document.querySelector("svg").getBoundingClientRect().y +
+    coordinates[1] -
+    50;
+
+  let formattedAmmount = parseInt(emissionAmmount);
+  // Borrow regex for formatting from a stack overflow post
+  // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  formattedAmmount = formattedAmmount
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  countrySpan.innerText = `Country: ${country}`;
+  yearSpan.innerText = `Year: ${year}`;
+  emissionTypeSpan.innerText = `Emission Type: ${emissionType}`;
+  emissionAmmountSpan.innerText = `Ammount: ${formattedAmmount} kt`;
+
+  tooltip.style.top = `${mouseY}px`;
+  if (mouseX > window.innerWidth - 200) {
+    mouseX =
+      document.querySelector("svg").getBoundingClientRect().x +
+      coordinates[0] -
+      200;
+  }
+
+  tooltip.style.left = `${mouseX}px`;
+  tooltip.style.display = "block";
+}
+
+function hideTooltip() {
+  tooltip.style.display = "none";
 }
 
 function initGraph() {
@@ -201,14 +250,40 @@ function initGraph() {
           // Set fill to black if no emissions data is available
           return "black";
         })
-        .style("stroke", "black");
+        .style("stroke", "black")
+        .on("mouseover", function(d, i) {
+          let country = d.properties.name;
+
+          // Check if emissions data exists for the emission type and country
+          if (emissions[currentEmissionType][country]) {
+            // Check if emissions data exists for the current year
+            if (emissions[currentEmissionType][country][currentYear]) {
+              // Set the country's fill color to match its emission level at the current year and emission type
+              let emission =
+                emissions[currentEmissionType][country][currentYear];
+
+              let coordinates = d3.mouse(this);
+
+              updateTooltip(
+                country,
+                currentYear,
+                currentEmissionType,
+                emission,
+                coordinates
+              );
+            }
+          }
+        })
+        .on("mouseout", () => {
+          hideTooltip();
+        });
     });
   });
 }
 
 function updateYear() {
   currentYear = yearSlider.value;
-  yearSpan.innerText = currentYear;
+  currentYearSpan.innerText = currentYear;
 
   updateGraph();
 }

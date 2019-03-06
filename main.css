@@ -6,7 +6,8 @@ body {
   left: 0;
 }
 
-#h1 {
+h1,
+h2 {
   text-align: center;
 }
 
@@ -64,7 +65,7 @@ button:active {
 .slider {
   -webkit-appearance: none;
   margin: 20px 10px;
-  width: 50%;
+  width: 80%;
   height: 15px;
   border-radius: 5px;
   background: #d3d3d3;
@@ -109,4 +110,33 @@ button:active {
 svg {
   border: 2px solid black;
   background-color: lightblue;
+}
+
+#tooltip {
+  max-width: 200px;
+  max-height: 100px;
+  background-color: black;
+  border: 2px solid lightgray;
+  color: white;
+  border-radius: 2px;
+  padding: 5px;
+  overflow-y: auto;
+  margin: 10px;
+  display: none;
+  position: absolute;
+}
+
+#tooltip span {
+  float: left;
+  clear: both;
+  font-weight: bold;
+  line-height: 17px;
+  max-height: 34px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 4px;
 }
