@@ -121,7 +121,7 @@ function initGraph() {
     maxEmission =
       Math.round(
         Math.max(...emissions[currentEmissionType].allValues) / 100000
-      ) * 100000;
+      ) * 100000 + 100000;
 
     cScale = d3
       .scaleLinear()

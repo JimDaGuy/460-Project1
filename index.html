@@ -3,8 +3,10 @@
   <head>
     <title>My Awesome Visualization</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
 
   <body>
@@ -17,19 +19,66 @@
       <button id="sf6">Sulphur Hexafluoride (SF6)</button>
       <button id="ghgs">Greenhouse Gasses (GHGS)</button>
     </div>
+    <h2 id="mapTitle">Carbon Dioxide (CO2) Emissions in kilotons</h2>
+    <div id="tooltip">
+      <span id="countrySpan">Country:</span>
+      <span id="yearSpan">Year:</span>
+      <span id="emissionTypeSpan">Emission Type:</span>
+      <span id="emissionAmmountSpan">Ammount:</span>
+    </div>    
+    <div id="mapContainer"></div>
+    <h3 id="sliderTitle">Year</h3>
     <div id="sliderContainer">
       <input id="yearSlider" class="slider" type="range" min="1990" max="2014" value="1990"></input>
       <span id="year">1990</span>
     </div>
-    <h2 id="mapTitle">Carbon Dioxide (CO2) Emissions in kilotons</h2>  
-  <div id="mapContainer">    
-  </div>
-  <div id="tooltip">
-    <span id="countrySpan">Country:</span>
-    <span id="yearSpan">Year:</span>
-    <span id="emissionTypeSpan">Emission Type:</span>
-    <span id="emissionAmmountSpan">Ammount:</span>
-  </div>     
+    <hr>
+    <h2 id="storyTitle">The Story Behind the Data</h2>
+    <p class="storyParagraph">
+      Seeing as our data is missing several countries, we can
+      only speculate about the countries that have data associated
+      with them. 
+    </p>
+    <hr>
+    <h3 class="storySubtitle">The United States</h3>
+    <p class="storyParagraph">
+      From the start, it was fairly apparent that the
+      United States seems to be the largest greenhouse gas emissions
+      producer in our dataset. The U.S. consistently set the bar for the
+      highest carbon dioxide(co2), hydrofluorocarbons(hcfs), nitrous
+      oxide(n2o), and sulphur hexafluoride(sf6) emissions every year
+      from 1990 to 2014. The only category the U.S. was not the lead
+      producer of was methane(ch4), trailing closely behind Russia
+      most years.
+    </p>
+    <h3 class="storySubtitle">The Peaks</h3>
+    <p class="storyParagraph">
+      Listed below are the years and ammounts of peak emissions for
+      each category of greenhouse gas in our data. As expected, the
+      United States holds all of them except for methane. While the U.S.
+      leads in all other categories, it should be noted that methane is
+      roughly 30 times more potent than carbon dioxide, contributing much
+      more to global warming 
+      <a href="https://www.sciencedaily.com/releases/2014/03/140327111724.htm">(Source)</a>.
+    </p>
+    <ul class="storyUL">
+      <li class="storyLI">Carbon Dioxide (co2) - United States - 2005 - 6,122,746 kilotons</li>
+      <li class="storyLI">Hydrofluorocarbons (hcfs) - United States - 2014 - 157,237 kilotons</li>
+      <li class="storyLI">Methane (ch4) - Russia - 1990 - 942,383 kilotons</li>
+      <li class="storyLI">Nitrous Oxide (n2o) - United States - 1998 - 433,872 kilotons</li>
+      <li class="storyLI">Sulphur Hexafluoride (sf6) - United States - 1990 - 31,080 kilotons</li>
+      <li class="storyLI">Greenhouse Gasses (ghgs) - United States - 2007 - 7,422,207 kilotons</li>
+    </ul>
+    <h3 class="storySubtitle">Emissions Disparity</h3>
+    <p id="lastParagraph" class="storyParagraph">
+      While the United States and Russia are large contributors to
+      global emissions of greenhouse gasses, the data shows that in
+      all the other countries displayed, greenhouse gas emissions
+      rarely if ever rise above half of Russia's emissions or even
+      a fifth of the United States' emissions. This is likely in part
+      due to the disparity in their populations but the difference is
+      still staggering.
+    </p>
     <script src='./main.js'></script>
   </body>
 </html>

@@ -30,3 +30,17 @@ Project 1 for IGME 460.
 - To show data for different types of emissions I implemented a few buttons to switch between emissions types.
 - After starting with a saturation color scale, I switched to a diverging color scale to better show the difference between emissions values.
 - I also added a tooltip to show the exact values for a hovered country.
+
+## Sources
+
+### Bootstrap
+
+Used Bootstrap CSS to add some nice looking styles to my elements.
+
+### Stack Overflow
+
+Used a function for formatting a number with commas from a stack overflow post. https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+
+### W3Schools
+
+Borrowed some styles for my year slider from an example in W3Schools. https://www.w3schools.com/howto/howto_js_rangeslider.asp
