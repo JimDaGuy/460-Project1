@@ -33,7 +33,7 @@ let key = d => d.properties.name;
 let currentYear = 1990;
 let currentEmissionType = "co2";
 let emissions = {};
-let minEmission, maxEmission;
+let minEmission, maxEmission, formattedMaxEmission;
 
 // Row conversion function
 function rowConverter(d) {
@@ -121,9 +121,7 @@ function initGraph() {
     maxEmission =
       Math.round(
         Math.max(...emissions[currentEmissionType].allValues) / 100000
-      ) *
-        100000 +
-      100000;
+      ) * 100000;
 
     cScale = d3
       .scaleLinear()
@@ -153,9 +151,6 @@ function initGraph() {
       .attr("x2", "100%")
       .attr("y2", "100%")
       .attr("spreadMethod", "pad");
-
-    // ['##8c510a','#d8b365','#f6e8c3','#c7eae5','#5ab4ac','#01665e']
-    // ['#4d9221', '#a1d76a', '#e6f5d0', '#fde0ef', '#e9a3c9', '#c51b7d']
 
     cStop1 = legend
       .append("stop")
@@ -213,6 +208,10 @@ function initGraph() {
       .style("font-weight", "bold")
       .text(`${minEmission} kt`);
 
+    formattedMaxEmission = maxEmission
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
     legendHighText = svg
       .append("text")
       .attr("x", w / 2 + lWidth / 2 - 5)
@@ -221,7 +220,7 @@ function initGraph() {
       .attr("text-anchor", "end")
       .attr("fill", "black")
       .style("font-weight", "bold")
-      .text(`${maxEmission} kt`);
+      .text(`${formattedMaxEmission} kt`);
 
     d3.json("world-110m.geojson", function(err, geojson) {
       countries = geojson.features;
@@ -274,7 +273,7 @@ function initGraph() {
             }
           }
         })
-        .on("mouseout", () => {
+        .on("mouseout", function() {
           hideTooltip();
         });
     });
@@ -304,6 +303,10 @@ function updateEmissionType(num) {
           100000 +
         100000;
 
+      formattedMaxEmission = maxEmission
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
       // Update color scale
       cScale = d3
         .scaleLinear()
@@ -363,7 +366,7 @@ function updateEmissionType(num) {
       legendHighText
         .transition()
         .duration(1500)
-        .text(`${maxEmission} kt`);
+        .text(`${formattedMaxEmission} kt`);
 
       // Update graph colors
       updateGraph();
@@ -380,6 +383,10 @@ function updateEmissionType(num) {
           100000 +
         100000;
 
+      formattedMaxEmission = maxEmission
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
       // Update color scale
       cScale = d3
         .scaleLinear()
@@ -439,7 +446,7 @@ function updateEmissionType(num) {
       legendHighText
         .transition()
         .duration(1500)
-        .text(`${maxEmission} kt`);
+        .text(`${formattedMaxEmission} kt`);
 
       // Update graph colors
       updateGraph();
@@ -458,6 +465,10 @@ function updateEmissionType(num) {
           100000 +
         100000;
 
+      formattedMaxEmission = maxEmission
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
       // Update color scale
       cScale = d3
         .scaleLinear()
@@ -517,7 +528,7 @@ function updateEmissionType(num) {
       legendHighText
         .transition()
         .duration(1500)
-        .text(`${maxEmission} kt`);
+        .text(`${formattedMaxEmission} kt`);
 
       // Update graph colors
       updateGraph();
@@ -536,6 +547,10 @@ function updateEmissionType(num) {
           100000 +
         100000;
 
+      formattedMaxEmission = maxEmission
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
       // Update color scale
       cScale = d3
         .scaleLinear()
@@ -595,7 +610,7 @@ function updateEmissionType(num) {
       legendHighText
         .transition()
         .duration(1500)
-        .text(`${maxEmission} kt`);
+        .text(`${formattedMaxEmission} kt`);
 
       // Update graph colors
       updateGraph();
@@ -614,6 +629,10 @@ function updateEmissionType(num) {
           100000 +
         100000;
 
+      formattedMaxEmission = maxEmission
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
       // Update color scale
       cScale = d3
         .scaleLinear()
@@ -673,7 +692,7 @@ function updateEmissionType(num) {
       legendHighText
         .transition()
         .duration(1500)
-        .text(`${maxEmission} kt`);
+        .text(`${formattedMaxEmission} kt`);
 
       // Update graph colors
       updateGraph();
@@ -691,6 +710,10 @@ function updateEmissionType(num) {
           1000 +
         1000;
 
+      formattedMaxEmission = maxEmission
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
       // Update color scale
       cScale = d3
         .scaleLinear()
@@ -750,7 +773,7 @@ function updateEmissionType(num) {
       legendHighText
         .transition()
         .duration(1500)
-        .text(`${maxEmission} kt`);
+        .text(`${formattedMaxEmission} kt`);
 
       // Update graph colors
       updateGraph();
